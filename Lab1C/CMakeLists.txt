@@ -91,3 +91,63 @@ add_test(
             ${CMAKE_CURRENT_SOURCE_DIR}/tests/test6_expected.txt
 )
 set_tests_properties(test6_check PROPERTIES DEPENDS test6_run)
+
+# Test 7: Развилка с тупиковым коридором (ветвление: одна ветка в тупик, вторая к финишу)
+add_test(
+    NAME test7_run
+    COMMAND task
+            ${CMAKE_CURRENT_SOURCE_DIR}/tests/test7_input.txt
+            ${CMAKE_CURRENT_BINARY_DIR}/test7_output.txt
+)
+add_test(
+    NAME test7_check
+    COMMAND ${CMAKE_COMMAND} -E compare_files --ignore-eol
+            ${CMAKE_CURRENT_BINARY_DIR}/test7_output.txt
+            ${CMAKE_CURRENT_SOURCE_DIR}/tests/test7_expected.txt
+)
+set_tests_properties(test7_check PROPERTIES DEPENDS test7_run)
+
+# Test 8: Развилка с выбором кратчайшего пути (два пути разной длины: длинный в обход и короткий прямой)
+add_test(
+    NAME test8_run
+    COMMAND task
+            ${CMAKE_CURRENT_SOURCE_DIR}/tests/test8_input.txt
+            ${CMAKE_CURRENT_BINARY_DIR}/test8_output.txt
+)
+add_test(
+    NAME test8_check
+    COMMAND ${CMAKE_COMMAND} -E compare_files --ignore-eol
+            ${CMAKE_CURRENT_BINARY_DIR}/test8_output.txt
+            ${CMAKE_CURRENT_SOURCE_DIR}/tests/test8_expected.txt
+)
+set_tests_properties(test8_check PROPERTIES DEPENDS test8_run)
+
+# Test 9: Несколько последовательных развилок с тупиковыми ответвлениями (дерево развилок)
+add_test(
+    NAME test9_run
+    COMMAND task
+            ${CMAKE_CURRENT_SOURCE_DIR}/tests/test9_input.txt
+            ${CMAKE_CURRENT_BINARY_DIR}/test9_output.txt
+)
+add_test(
+    NAME test9_check
+    COMMAND ${CMAKE_COMMAND} -E compare_files --ignore-eol
+            ${CMAKE_CURRENT_BINARY_DIR}/test9_output.txt
+            ${CMAKE_CURRENT_SOURCE_DIR}/tests/test9_expected.txt
+)
+set_tests_properties(test9_check PROPERTIES DEPENDS test9_run)
+
+# Test 10: Перекрёсток с многолучевой развилкой (тупики в разные стороны и один выход)
+add_test(
+    NAME test10_run
+    COMMAND task
+            ${CMAKE_CURRENT_SOURCE_DIR}/tests/test10_input.txt
+            ${CMAKE_CURRENT_BINARY_DIR}/test10_output.txt
+)
+add_test(
+    NAME test10_check
+    COMMAND ${CMAKE_COMMAND} -E compare_files --ignore-eol
+            ${CMAKE_CURRENT_BINARY_DIR}/test10_output.txt
+            ${CMAKE_CURRENT_SOURCE_DIR}/tests/test10_expected.txt
+)
+set_tests_properties(test10_check PROPERTIES DEPENDS test10_run)
